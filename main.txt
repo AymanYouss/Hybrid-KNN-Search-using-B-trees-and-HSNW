@@ -1,0 +1,59 @@
+// #include <iostream>
+// #include "bplustreecpp.h"
+
+// using namespace std;
+
+// int main(){
+//     BPlusTree bpt(2);
+//     bpt.insert(100);
+//     bpt.insert(200);
+//     bpt.insert(3);
+//     bpt.insert(423);
+//     bpt.insert(512);
+//     bpt.insert(60);
+//     bpt.insert(70);
+//     bpt.insert(83);
+
+//     cout << "Tree after insertion:\n";
+
+//     bpt.printTree();
+
+//     cout << "Searching for 512: " << bpt.search(512) << endl;
+//     cout << "Searching for 999: " << bpt.search(999) << endl;
+//     cout << "Searching for 3: " << bpt.search(3) << endl;
+
+//     cout << "Range search [0, 100]:\n";
+//     //Expect 3, 60, 70, 83, 100 (length 5)
+
+//     pair<ll, vector<double>> result = bpt.rangeSearch(0, 100);
+//     cout << "Length: " << result.first << endl;
+//     cout << "Values: ";
+//     for (int i = 0; i < result.first; i++) {
+//         cout << result.second[i] << " ";
+//     }
+//     cout << endl;
+
+//     cout << "Range search [424, 500]:\n";
+//     //Expect [] (length 0)
+//     pair<ll, vector<double>> result2 = bpt.rangeSearch(424, 500);
+//     cout << "Length: " << result2.first << endl;
+//     cout << "Values: ";
+//     for (int i = 0; i < result2.first; i++) {
+//         cout << result2.second[i] << " ";
+//     }
+//     cout << endl;
+
+//     cout << "Range search [60, 512]:\n";
+//     //Expect 60, 70, 83, 100, 200, 423, 512 (length 7)
+//     pair<ll, vector<double>> result3 = bpt.rangeSearch(60, 512);
+//     cout << "Length: " << result3.first << endl;
+//     cout << "Values: ";
+//     for (int i = 0; i < result3.first; i++) {
+//         cout << result3.second[i] << " ";
+//     }
+    
+
+
+
+//     return 0;
+// }
