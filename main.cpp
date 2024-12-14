@@ -8,11 +8,12 @@ int main(){
     bpt.insert(1);
     bpt.insert(2);
     bpt.insert(3);
-
     bpt.insert(4);
     bpt.insert(5);
     bpt.insert(6);
+    
 
+    
 
     bpt.printTree();
 
