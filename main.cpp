@@ -7,156 +7,13 @@
 #include <chrono>
 #include <cmath>
 #include <algorithm>
-
-// We replicate minimal struct + function definitions that were presumably in "dataset.h"
-struct DataPoint {
-    std::vector<float> coords; // the 100-dim vector
-    float attribute;           // the timestamp from the .bin file
-};
-
-// Simple Euclidean distance
-float euclideanDistance(const std::vector<float> &a, const std::vector<float> &b) {
-    float sum = 0.0f;
-    for (size_t i = 0; i < a.size(); i++) {
-        float diff = a[i] - b[i];
-        sum += diff * diff;
-    }
-    return std::sqrt(sum);
-}
-
-// HNSWWrapper, BPlusTree, etc. — same as in code 1 (you said "Include your provided headers").
-// For simplicity, let's assume we still have those header implementations available:
 #include "hnsw_wrapper.h"  // HNSWWrapper class
 #include "bplustreecpp.h"  // BPlusTree class
+#include "dataset.h"
 
 // Global map: attribute value -> vector of dataset indices
 static std::unordered_map<double, std::vector<size_t>> attributeMap;
 
-/********************************************************************/
-/***                    HELPER FUNCTIONS                          ***/
-/********************************************************************/
-
-// Directly read the dataset from a .bin file
-// Format of `.bin` (as in code 2):
-//   [num_vectors (uint32_t)]
-//   For each vector: 102 floats = (1 category + 1 timestamp + 100 dims)
-bool loadDatasetFromBin(const std::string &binFile,
-                        std::vector<DataPoint> &dataset,
-                        size_t &dimOut)
-{
-    std::ifstream fin(binFile, std::ios::binary);
-    if (!fin.is_open()) {
-        std::cerr << "Error opening dataset bin file: " << binFile << std::endl;
-        return false;
-    }
-
-    uint32_t N = 0;
-    fin.read(reinterpret_cast<char*>(&N), sizeof(uint32_t));
-    if (!fin.good()) {
-        std::cerr << "Error reading num_vectors from " << binFile << std::endl;
-        return false;
-    }
-
-    // We know each vector is 100-dim. We'll store the "timestamp" in DataPoint.attribute.
-    // The bin format has: category (1 float), timestamp (1 float), coords (100 floats)
-    const size_t total_floats_per_vector = 102; 
-    std::vector<float> buffer(total_floats_per_vector);
-
-    dataset.resize(N);
-    for (uint32_t i = 0; i < N; i++) {
-        fin.read(reinterpret_cast<char*>(buffer.data()),
-                 total_floats_per_vector * sizeof(float));
-        if (!fin.good()) {
-            std::cerr << "Error reading vector #" << i << " from " << binFile << std::endl;
-            return false;
-        }
-        // ignore buffer[0] (category)
-        float timestamp = buffer[1]; // store this in DataPoint.attribute
-        DataPoint dp;
-        dp.coords.resize(100);
-        for (size_t d = 0; d < 100; d++) {
-            dp.coords[d] = buffer[2 + d];
-        }
-        dp.attribute = timestamp;
-        dataset[i] = std::move(dp);
-    }
-    fin.close();
-    dimOut = 100;  // fixed dimension
-    return true;
-}
-
-// Directly read queries from a .bin file
-// Format of `.bin` (as in code 2):
-//   [num_queries (uint32_t)]
-//   For each query: 104 floats = (query_type + category + l + r + 100-dim vec)
-//
-// We'll only keep queries where query_type == 2 or 3. For each query we store:
-//   - the 100-dim query vector
-//   - the [l, r] range
-//   - the user also needs 'k'? In code 1, the query file had the dimension appended at the end 
-//     (which was "100"), then user typed 'k' after that. 
-//     But there's no 'k' in the binary format from code 2.
-//
-// **Assumption**: If you need a top-k, we can fix k or parse it from somewhere. 
-// For demonstration, let's fix k=100 or read it from the command line, 
-// since the original code 2 did not store 'k' in the binary. 
-//
-// Alternatively, if your .bin queries have been extended to have 'k', 
-// you'd have 105 floats, etc. 
-// For now, let's emulate code 1's approach: we have a "k" input param to the program or a default.
-struct Query {
-    std::vector<float> queryVec;
-    float a_min;
-    float a_max;
-};
-
-bool loadQueriesFromBin(const std::string &binFile,
-                        std::vector<Query> &queries)
-{
-    std::ifstream fin(binFile, std::ios::binary);
-    if (!fin.is_open()) {
-        std::cerr << "Error opening query bin file: " << binFile << std::endl;
-        return false;
-    }
-
-    uint32_t numQueries = 0;
-    fin.read(reinterpret_cast<char*>(&numQueries), sizeof(uint32_t));
-    if (!fin.good()) {
-        std::cerr << "Error reading num_queries from " << binFile << std::endl;
-        return false;
-    }
-
-    const size_t floats_per_query = 104; // per code 2
-    std::vector<float> buffer(floats_per_query);
-
-    for (uint32_t i = 0; i < numQueries; i++) {
-        fin.read(reinterpret_cast<char*>(buffer.data()),
-                 floats_per_query * sizeof(float));
-        if (!fin.good()) {
-            std::cerr << "Error reading query #" << i << " from " << binFile << std::endl;
-            return false;
-        }
-
-        float query_type = buffer[0];
-        // float category = buffer[1]; // ignored
-        float l = buffer[2];
-        float r = buffer[3];
-
-        // If query_type == 2 or 3, we keep it
-        if (static_cast<int>(query_type) == 2 || static_cast<int>(query_type) == 3) {
-            Query q;
-            q.queryVec.resize(100);
-            for (size_t d = 0; d < 100; d++) {
-                q.queryVec[d] = buffer[4 + d];
-            }
-            q.a_min = l;
-            q.a_max = r;
-            queries.push_back(std::move(q));
-        }
-    }
-    fin.close();
-    return true;
-}
 
 /********************************************************************/
 /***                     LOGIC FROM CODE 1                        ***/
@@ -335,13 +192,6 @@ int main(int argc, char** argv) {
         const size_t threshold = 20;
         if (candidateIDs.size() <= threshold) {
             // *Brute force* approach on the candidateIDs
-            // Ground truth is also from candidateIDs
-            auto gtBrute = bruteForceTopK(dataset, candidateIDs, queryVec, k);
-            std::vector<size_t> gtIndices; 
-            gtIndices.reserve(gtBrute.size());
-            for (auto &p: gtBrute) {
-                gtIndices.push_back(p.second);
-            }
 
             // The approximate result = the same brute force
             auto approxTopK = bruteForceTopK(dataset, candidateIDs, queryVec, k);
@@ -351,6 +201,13 @@ int main(int argc, char** argv) {
 
             auto endQuery = std::chrono::steady_clock::now();
             double queryTime_ms = std::chrono::duration_cast<std::chrono::microseconds>(endQuery - startQuery).count() / 1000.0;
+            auto gtBrute = bruteForceTopK(dataset, candidateIDs, queryVec, k);
+            // Ground truth is also from candidateIDs
+            std::vector<size_t> gtIndices; 
+            gtIndices.reserve(gtBrute.size());
+            for (auto &p: gtBrute) {
+                gtIndices.push_back(p.second);
+            }
 
             // Evaluate metrics
             double precK = computePrecisionK(approxIndices, gtIndices);
@@ -370,6 +227,11 @@ int main(int argc, char** argv) {
             resultFile << "-----------------------------------\n";
         } else {
             // *HNSW* approach on the entire dataset
+
+            // Approx retrieval using global HNSW
+            auto topk = globalHNSW.searchKnn(queryVec.data(), k, /*efSearch=*/100);
+            auto endQuery = std::chrono::steady_clock::now();
+            double queryTime_ms = std::chrono::duration_cast<std::chrono::microseconds>(endQuery - startQuery).count() / 1000.0;
             // Ground truth is top‐k from the ENTIRE dataset
             auto gtTopK = bruteForceTopKEntire(dataset, queryVec, k);
             std::vector<size_t> gtIndices; 
@@ -378,17 +240,12 @@ int main(int argc, char** argv) {
                 gtIndices.push_back(p.second);
             }
 
-            // Approx retrieval using global HNSW
-            auto topk = globalHNSW.searchKnn(queryVec.data(), k, /*efSearch=*/100);
-            auto endQuery = std::chrono::steady_clock::now();
-            double queryTime_ms = std::chrono::duration_cast<std::chrono::microseconds>(endQuery - startQuery).count() / 1000.0;
-
             std::vector<size_t> hnswIndices; 
-            hnswIndices.reserve(topk.size());
-            for (auto &r : topk) {
-                hnswIndices.push_back(r.second);
-            }
-            approxIndices = hnswIndices;
+                hnswIndices.reserve(topk.size());
+                for (auto &r : topk) {
+                    hnswIndices.push_back(r.second);
+                }
+                approxIndices = hnswIndices;
 
             // Evaluate metrics vs entire‐dataset ground truth
             double precK = computePrecisionK(approxIndices, gtIndices);
@@ -399,12 +256,41 @@ int main(int argc, char** argv) {
             allRecall.push_back(recallK);
             allAcc.push_back(acc);
 
+            // Filter the approximate indices to include only the vectors in the range a_min to a_max
+            std::vector<size_t> filteredIndices;
+            for (auto idx : approxIndices) {
+                double attr = dataset[idx].attribute;
+                if (attr >= a_min && attr <= a_max) {
+                    filteredIndices.push_back(idx);
+                }
+            }
+
+            //The ground truth indices should be filtered as well
+            std::vector<size_t> filteredGTIndices;
+            for (auto idx : gtIndices) {
+                double attr = dataset[idx].attribute;
+                if (attr >= a_min && attr <= a_max) {
+                    filteredGTIndices.push_back(idx);
+                }
+            }
+
+
+            // Recalculate metrics using the filtered indices
+            double precK2 = computePrecisionK(filteredIndices, filteredGTIndices);
+            double recallK2 = computeRecallK(filteredIndices, filteredGTIndices);
+            double acc2  = computeAccuracy(filteredIndices, filteredGTIndices);
+
+            
+
             resultFile << "Query #" << (qIdx+1) << " (HNSW scenario):\n";
             resultFile << "  CandidateIDs.size() = " << candidateIDs.size() << "\n";
             resultFile << "  QueryTime (ms) = " << queryTime_ms << "\n";
             resultFile << "  Precision@k = " << precK << "\n";
             resultFile << "  Recall@k = " << recallK << "\n";
             resultFile << "  Accuracy = " << acc << "\n";
+            resultFile << "  Filtered Precision@k = " << precK2 << "\n";
+            resultFile << "  Filtered Recall@k = " << recallK2 << "\n";
+            resultFile << "  Filtered Accuracy = " << acc2 << "\n";
             resultFile << "-----------------------------------\n";
         }
     }

@@ -5,41 +5,44 @@ using namespace std;
 typedef long long ll;
 
 struct Node {
-    ll fanout;         // maximum capacity in this simplified code
-    ll numberOfKeys;   // how many keys are actuafloaty in this node
-    bool isLeaf;
+    ll maxKeys;         // maximum capacity of a node (maxKeys = 2 * d where d is the order of the tree)
+    ll numberOfKeys;   // Current number of keys in the node
+    bool isLeaf;        // Boolean variable to know whether this node is a leaf
     
-    Node* parent;
-    Node* next;        // singly linked list pointer for leaves
+    Node* parent;       // Parent of the nide
+    Node* next;        // linked list pointer for leaves to the next element
     
-    vector<Node*> children;
-    vector<float> keys;
+    vector<Node*> children; // Children of the node
+    vector<float> keys;      // Actual key values (if (isLeaf==true) then it is the data values)
 
-    Node(ll fanout, ll numberOfKeys, bool isLeaf) {
-        this->fanout = fanout;        // 'fanout' here is analogous to "degree" in your code
+    // Constructor of element Node
+    Node(ll maxKeys, ll numberOfKeys, bool isLeaf) {
+        this->maxKeys = maxKeys;        
         this->numberOfKeys = numberOfKeys;
         this->isLeaf = isLeaf;
         this->parent = NULL;
         this->next = NULL;
 
-        // Afloatocate space in children and keys (fanout = max #keys for leaves, so max children is fanout+1)
-        children.resize(fanout + 1, nullptr);
-        keys.resize(fanout+1, 0.0);
+        // Allocate space in children and keys (maxKeys = max #keys for leaves, so max children is maxKeys+1)
+        children.resize(maxKeys + 1, nullptr);
+        keys.resize(maxKeys+1, 0.0);
     }
 };
 
-class BPlusTree {
+class BPlusTree {   
     Node* root;
-    ll degree;  // If you cafloat this 'degree', treat it as "max #keys" in a node for simplicity
+    ll degree;  // Degree of the tree will be the maximum nodes that can be stored on all the nodes of this tree (which is equal to 2*order)
 
 public:
+    // Constructor of the B+ tree (only the root will be available since the tree will be empty at the beginning)
     BPlusTree(float degree) {
         this->degree = degree;
         root = new Node(degree, 0, true);
     }
 
+    // Public Function to insert "value" into the b+ tree
     void insert(float value) {
-        //cout << "Inserting " << value << endl;
+        // Start with the root
         Node* current = root;
 
         // 1. Traverse down to a leaf where 'value' should be inserted
@@ -51,7 +54,7 @@ public:
             current = current->children[i];
         }
 
-        // 2. Insert 'value' into this leaf in sorted order
+        // 2. Insert 'value' into this leaf in sorted maxKeys
         insertIntoLeaf(current, value);
 
         // 3. If leaf is over capacity, split
@@ -102,11 +105,11 @@ public:
     }
 
 private:
-    // Utility to insert 'value' into a leaf node in sorted order
+    // Utility to insert 'value' into a leaf node in sorted maxKeys
     void insertIntoLeaf(Node* leaf, float value) {
         int i = leaf->numberOfKeys - 1;
         // Shift keys right until we find the correct position for 'value'
-        while (i >= 0 && i < leaf->fanout && leaf->keys[i] > value) {
+        while (i >= 0 && i < leaf->maxKeys && leaf->keys[i] > value) {
             leaf->keys[i + 1] = leaf->keys[i];
             i--;
         }
@@ -127,7 +130,7 @@ private:
 
         // We'float split roughly in half
         ll splitIndex = (leaf->numberOfKeys) / 2;  
-        // For B+‐tree leaf nodes, some implementations might use “ceil((fanout+1)/2)” etc.
+        // For B+‐tree leaf nodes, some implementations might use “ceil((maxKeys+1)/2)” etc.
         // This code takes the lower half in 'leaf', upper half in 'newLeaf'
 
         leaf->numberOfKeys = splitIndex;
@@ -170,10 +173,10 @@ private:
     // Insert (value, newChildPtr) into parent node 'parent'
     // If parent overflows, split the parent as wefloat (recursively)
     void insertInParent(Node* parent, float value, Node* newChild) {
-        // Insert 'value' into 'parent' in sorted order
+        // Insert 'value' into 'parent' in sorted maxKeys
         int i = parent->numberOfKeys - 1;
         // Shift keys to the right to find correct position
-        while (i >= 0 && i < parent->fanout && parent->keys[i] > value) {
+        while (i >= 0 && i < parent->maxKeys && parent->keys[i] > value) {
             parent->keys[i + 1] = parent->keys[i];
             parent->children[i + 2] = parent->children[i + 1];
             i--;
