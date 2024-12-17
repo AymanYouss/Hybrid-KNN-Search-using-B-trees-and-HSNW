@@ -1,0 +1,7 @@
+data/sigmod/
+*.bin
+*.txt
+
+data/sigmodtxt/
+*.bin
+*.txt
