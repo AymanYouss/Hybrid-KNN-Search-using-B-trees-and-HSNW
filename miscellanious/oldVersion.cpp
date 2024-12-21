@@ -158,19 +158,15 @@ int main(int argc, char** argv) {
     size_t Q = queries.size();
     std::cout << "Loaded " << Q << " queries (where query_type == 2 or 3) from " << queriesBinFile << "\n";
 
-
     // We'll store per‐query metrics in these
     std::vector<double> allPrec, allRecall, allAcc;
     allPrec.reserve(Q);
     allRecall.reserve(Q);
     allAcc.reserve(Q);
-    // ----------------- NEW: Start the total query timer ----------------- 
-    auto startAllQueries = std::chrono::steady_clock::now();
-    // --------------------------------------------------------------------
 
     // 5. For each query, do B+‐tree range search and then either brute force or HNSW
     for (size_t qIdx = 0; qIdx < Q; qIdx++) {
-        // cout << "Query Number :" << qIdx << "\n";
+        cout << "Query Number :" << qIdx << "\n";
         const auto &q = queries[qIdx];
         const std::vector<float> &queryVec = q.queryVec;
         float a_min = q.a_min;
@@ -260,50 +256,15 @@ int main(int argc, char** argv) {
             allRecall.push_back(recallK);
             allAcc.push_back(acc);
 
-            // Filter the approximate indices to include only the vectors in the range a_min to a_max
-            std::vector<size_t> filteredIndices;
-            for (auto idx : approxIndices) {
-                double attr = dataset[idx].attribute;
-                if (attr >= a_min && attr <= a_max) {
-                    filteredIndices.push_back(idx);
-                }
-            }
-
-            //The ground truth indices should be filtered as well
-            std::vector<size_t> filteredGTIndices;
-            for (auto idx : gtIndices) {
-                double attr = dataset[idx].attribute;
-                if (attr >= a_min && attr <= a_max) {
-                    filteredGTIndices.push_back(idx);
-                }
-            }
-
-
-            // Recalculate metrics using the filtered indices
-            double precK2 = computePrecisionK(filteredIndices, filteredGTIndices);
-            double recallK2 = computeRecallK(filteredIndices, filteredGTIndices);
-            double acc2  = computeAccuracy(filteredIndices, filteredGTIndices);
-
-            
-
             resultFile << "Query #" << (qIdx+1) << " (HNSW scenario):\n";
             resultFile << "  CandidateIDs.size() = " << candidateIDs.size() << "\n";
             resultFile << "  QueryTime (ms) = " << queryTime_ms << "\n";
             resultFile << "  Precision@k = " << precK << "\n";
             resultFile << "  Recall@k = " << recallK << "\n";
             resultFile << "  Accuracy = " << acc << "\n";
-            resultFile << "  Filtered Precision@k = " << precK2 << "\n";
-            resultFile << "  Filtered Recall@k = " << recallK2 << "\n";
-            resultFile << "  Filtered Accuracy = " << acc2 << "\n";
             resultFile << "-----------------------------------\n";
         }
     }
-
-     // ------------------ NEW: Stop the total query timer ------------------
-    auto endAllQueries = std::chrono::steady_clock::now();
-    double totalQueriesTimeMs = std::chrono::duration_cast<std::chrono::milliseconds>(
-        endAllQueries - startAllQueries).count();
-    // ---------------------------------------------------------------------
 
     // Summaries
     if (!allPrec.empty()) {
@@ -321,12 +282,9 @@ int main(int argc, char** argv) {
         resultFile << "Average Precision@k : " << avgPrec << "\n";
         resultFile << "Average Recall@k    : " << avgRecall << "\n";
         resultFile << "Average Accuracy    : " << avgAcc << "\n";
-        resultFile << "\nTotal Queries Time (ms): " << totalQueriesTimeMs << "\n";
-
     }
 
     resultFile.close();
     std::cout << "Done. Results written to benchmark_results.txt\n";
-    std::cout << "Total Queries Time (ms): " << totalQueriesTimeMs << "\n";
     return 0;
 }

@@ -1,0 +1,472 @@
+=== Build Times (milliseconds) ===
+B+Tree Build Time: 25 ms
+HNSW Build Time  : 7455 ms
+
+Query #1 (HNSW):
+  CandidateIDs.size() = 119
+  QueryTime (ms)      = 0.832
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #2 (HNSW):
+  CandidateIDs.size() = 74
+  QueryTime (ms)      = 1.151
+  Precision@K         = 0.99
+  Recall@K            = 0.99
+  Accuracy            = 0.99
+  Filtered Precision@K= 0.965517
+  Filtered Recall@K   = 0.965517
+  Filtered Accuracy   = 0.965517
+-----------------------------------
+Query #3 (HNSW):
+  CandidateIDs.size() = 55
+  QueryTime (ms)      = 0.606
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #4 (Brute Force):
+  CandidateIDs.size() = 13
+  QueryTime (ms)      = 0.034
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #5 (HNSW):
+  CandidateIDs.size() = 149
+  QueryTime (ms)      = 0.891
+  Precision@K         = 0.99
+  Recall@K            = 0.99
+  Accuracy            = 0.99
+  Filtered Precision@K= 0.982759
+  Filtered Recall@K   = 0.982759
+  Filtered Accuracy   = 0.982759
+-----------------------------------
+Query #6 (HNSW):
+  CandidateIDs.size() = 168
+  QueryTime (ms)      = 1.098
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #7 (HNSW):
+  CandidateIDs.size() = 105
+  QueryTime (ms)      = 0.802
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #8 (HNSW):
+  CandidateIDs.size() = 27
+  QueryTime (ms)      = 15.441
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #9 (HNSW):
+  CandidateIDs.size() = 148
+  QueryTime (ms)      = 16.695
+  Precision@K         = 0.99
+  Recall@K            = 0.99
+  Accuracy            = 0.99
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #10 (HNSW):
+  CandidateIDs.size() = 70
+  QueryTime (ms)      = 0.749
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #11 (Brute Force):
+  CandidateIDs.size() = 15
+  QueryTime (ms)      = 0.048
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #12 (HNSW):
+  CandidateIDs.size() = 79
+  QueryTime (ms)      = 0.958
+  Precision@K         = 0.99
+  Recall@K            = 0.99
+  Accuracy            = 0.99
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #13 (HNSW):
+  CandidateIDs.size() = 185
+  QueryTime (ms)      = 0.788
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #14 (HNSW):
+  CandidateIDs.size() = 34
+  QueryTime (ms)      = 0.761
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #15 (HNSW):
+  CandidateIDs.size() = 54
+  QueryTime (ms)      = 0.832
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #16 (HNSW):
+  CandidateIDs.size() = 343
+  QueryTime (ms)      = 16.511
+  Precision@K         = 0.98
+  Recall@K            = 0.98
+  Accuracy            = 0.98
+  Filtered Precision@K= 0.969697
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 0.969697
+-----------------------------------
+Query #17 (HNSW):
+  CandidateIDs.size() = 216
+  QueryTime (ms)      = 0.837
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #18 (HNSW):
+  CandidateIDs.size() = 84
+  QueryTime (ms)      = 16.323
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #19 (HNSW):
+  CandidateIDs.size() = 121
+  QueryTime (ms)      = 0.95
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #20 (HNSW):
+  CandidateIDs.size() = 32
+  QueryTime (ms)      = 16.422
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #21 (HNSW):
+  CandidateIDs.size() = 127
+  QueryTime (ms)      = 1.215
+  Precision@K         = 0.99
+  Recall@K            = 0.99
+  Accuracy            = 0.99
+  Filtered Precision@K= 0.98
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 0.98
+-----------------------------------
+Query #22 (HNSW):
+  CandidateIDs.size() = 54
+  QueryTime (ms)      = 1.152
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #23 (HNSW):
+  CandidateIDs.size() = 32
+  QueryTime (ms)      = 1.048
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #24 (HNSW):
+  CandidateIDs.size() = 136
+  QueryTime (ms)      = 1.046
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #25 (HNSW):
+  CandidateIDs.size() = 112
+  QueryTime (ms)      = 1.175
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #26 (HNSW):
+  CandidateIDs.size() = 39
+  QueryTime (ms)      = 31.272
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #27 (HNSW):
+  CandidateIDs.size() = 108
+  QueryTime (ms)      = 17.123
+  Precision@K         = 0.94
+  Recall@K            = 0.94
+  Accuracy            = 0.94
+  Filtered Precision@K= 0.956522
+  Filtered Recall@K   = 0.93617
+  Filtered Accuracy   = 0.956522
+-----------------------------------
+Query #28 (HNSW):
+  CandidateIDs.size() = 153
+  QueryTime (ms)      = 16.863
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #29 (HNSW):
+  CandidateIDs.size() = 134
+  QueryTime (ms)      = 1.246
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #30 (HNSW):
+  CandidateIDs.size() = 35
+  QueryTime (ms)      = 1.658
+  Precision@K         = 0.99
+  Recall@K            = 0.99
+  Accuracy            = 0.99
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #31 (Brute Force):
+  CandidateIDs.size() = 15
+  QueryTime (ms)      = 0.098
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #32 (HNSW):
+  CandidateIDs.size() = 87
+  QueryTime (ms)      = 1.641
+  Precision@K         = 0.99
+  Recall@K            = 0.99
+  Accuracy            = 0.99
+  Filtered Precision@K= 0.971429
+  Filtered Recall@K   = 0.971429
+  Filtered Accuracy   = 0.971429
+-----------------------------------
+Query #33 (HNSW):
+  CandidateIDs.size() = 38
+  QueryTime (ms)      = 33.398
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #34 (HNSW):
+  CandidateIDs.size() = 167
+  QueryTime (ms)      = 1.306
+  Precision@K         = 0.99
+  Recall@K            = 0.99
+  Accuracy            = 0.99
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 0.983871
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #35 (HNSW):
+  CandidateIDs.size() = 51
+  QueryTime (ms)      = 2.566
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #36 (HNSW):
+  CandidateIDs.size() = 56
+  QueryTime (ms)      = 0.917
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #37 (HNSW):
+  CandidateIDs.size() = 211
+  QueryTime (ms)      = 1.189
+  Precision@K         = 0.98
+  Recall@K            = 0.98
+  Accuracy            = 0.98
+  Filtered Precision@K= 0.975309
+  Filtered Recall@K   = 0.975309
+  Filtered Accuracy   = 0.975309
+-----------------------------------
+Query #38 (HNSW):
+  CandidateIDs.size() = 79
+  QueryTime (ms)      = 0.859
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #39 (HNSW):
+  CandidateIDs.size() = 430
+  QueryTime (ms)      = 1.538
+  Precision@K         = 0.96
+  Recall@K            = 0.96
+  Accuracy            = 0.96
+  Filtered Precision@K= 0.958333
+  Filtered Recall@K   = 0.958333
+  Filtered Accuracy   = 0.958333
+-----------------------------------
+Query #40 (HNSW):
+  CandidateIDs.size() = 271
+  QueryTime (ms)      = 1.034
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #41 (HNSW):
+  CandidateIDs.size() = 156
+  QueryTime (ms)      = 1.162
+  Precision@K         = 0.98
+  Recall@K            = 0.98
+  Accuracy            = 0.98
+  Filtered Precision@K= 0.982143
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 0.982143
+-----------------------------------
+Query #42 (HNSW):
+  CandidateIDs.size() = 76
+  QueryTime (ms)      = 0.708
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #43 (HNSW):
+  CandidateIDs.size() = 48
+  QueryTime (ms)      = 1.095
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #44 (HNSW):
+  CandidateIDs.size() = 45
+  QueryTime (ms)      = 0.825
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #45 (HNSW):
+  CandidateIDs.size() = 151
+  QueryTime (ms)      = 0.797
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #46 (HNSW):
+  CandidateIDs.size() = 92
+  QueryTime (ms)      = 0.874
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #47 (HNSW):
+  CandidateIDs.size() = 112
+  QueryTime (ms)      = 0.903
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+
+=== Aggregate Metrics over 47 queries ===
+Average Precision@K : 0.994894
+Average Recall@K    : 0.994894
+Average Accuracy    : 0.994894
+
+Total Queries Time (ms): 62

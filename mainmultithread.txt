@@ -142,9 +142,9 @@ int main(int argc, char** argv) {
         std::chrono::duration_cast<std::chrono::milliseconds>(endHNSW - startHNSW).count();
 
     // 4. Prepare output file
-    std::ofstream resultFile("benchmark_results_1m_multi_thread.txt");
+    std::ofstream resultFile("benchmark_results.txt");
     if(!resultFile.is_open()){
-        std::cerr << "Could not open benchmark_results_1m_multi_thread.txt for writing.\n";
+        std::cerr << "Could not open benchmark_results.txt for writing.\n";
         return 1;
     }
     resultFile << "=== Build Times (milliseconds) ===\n";
@@ -191,7 +191,7 @@ int main(int argc, char** argv) {
             }
 
             std::vector<size_t> approxIndices;
-            const size_t threshold = 100;
+            const size_t threshold = 20;
             
             if (candidateIDs.size() <= threshold) {
                 // Brute force
@@ -348,7 +348,7 @@ int main(int argc, char** argv) {
     // -------------------------------------------------------------------------
 
     resultFile.close();
-    std::cout << "Done. Results written to benchmark_results_1m_multi_thread.txt\n";
+    std::cout << "Done. Results written to benchmark_results.txt\n";
     std::cout << "Total time for all queries (ms): " << totalQueriesTimeMs << std::endl;
 
     return 0;
