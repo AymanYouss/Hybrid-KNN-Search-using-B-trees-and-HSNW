@@ -12,7 +12,7 @@ The system is designed to:
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 |-- bplustreecpp.h / bplustreecpp.cpp
@@ -36,7 +36,7 @@ The system is designed to:
 
 ---
 
-## 🛠️ Building and Running
+## Building and Running
 
 ### Prerequisites
 - **C++20** compiler (e.g., g++ version 10+).
@@ -66,7 +66,7 @@ The program:
 
 ---
 
-## 📁 Datasets
+## Datasets
 ### Provided Datasets
 - `dummy-data.bin` and `dummy-queries.bin` – Small test set.
 
