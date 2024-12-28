@@ -227,7 +227,7 @@ int main(int argc, char** argv) {
             } 
             else {
                 // HNSW scenario
-                auto topk = globalHNSW.searchKnn(queryVec.data(), K, /*efSearch=*/100);
+                auto topk = globalHNSW.searchKnn(queryVec.data(), 3*K, /*efSearch=*/100);
                 auto endQuery = std::chrono::steady_clock::now();
                 double queryTime_ms = 
                     std::chrono::duration_cast<std::chrono::microseconds>(endQuery - startQuery).count() / 1000.0;
