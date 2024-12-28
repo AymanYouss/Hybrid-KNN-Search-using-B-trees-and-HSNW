@@ -40,7 +40,7 @@ The system is designed to:
 
 ### Prerequisites
 - **C++20** compiler (e.g., g++ version 10+).
-- 
+
 ### Compilation
 ```bash
 g++ -std=c++20 main.cpp dataset.cpp hnsw_wrapper.cpp bplustreecpp.cpp -o hybrid_knn
