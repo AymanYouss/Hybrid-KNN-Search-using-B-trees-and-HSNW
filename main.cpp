@@ -7,10 +7,10 @@
 #include <chrono>
 #include <cmath>
 #include <algorithm>
-#include <thread>          // <--- For multithreading
-#include <mutex>           // <--- Potentially for shared data protection
-#include "hnsw_wrapper.h"  // HNSWWrapper class
-#include "bplustreecpp.h"  // BPlusTree class
+#include <thread>          
+#include <mutex>           
+#include "hnsw_wrapper.h"  
+#include "bplustreecpp.h"  
 #include "dataset.h"
 
 static std::unordered_map<double, std::vector<size_t>> attributeMap;
@@ -343,7 +343,7 @@ int main(int argc, char** argv) {
         resultFile << "Average Accuracy    : " << avgAcc << "\n";
     }
 
-    // ------------------- NEW: Print the total queries time --------------------
+    // ------------------- Print the total queries time --------------------
     resultFile << "\nTotal Queries Time (ms): " << totalQueriesTimeMs << "\n";
     // -------------------------------------------------------------------------
 
@@ -354,34 +354,3 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-// #include <iostream>
-// #include <fstream>
-// #include "bplustreecpp.h"
-
-// int main() {
-//     BPlusTree bptree(2);
-
-//     // Insert some sample keys to build a basic tree
-//     // (You'll need to provide your own insert method calls or adapt them as appropriate.)
-//     bptree.insert(10.0f);
-//     bptree.insert(20.0f);
-//     bptree.insert(5.0f);
-//     bptree.insert(15.0f);
-//     bptree.insert(25.0f);
-
-//     // Option 1: Print DOT code to the console (stdout)
-//     // bptree.generateDot(std::cout);
-
-//     // Option 2: Print DOT code to a file
-//     std::ofstream outFile("bptree.dot");
-//     if (outFile.is_open()) {
-//         bptree.generateDot(outFile);
-//         outFile.close();
-//         std::cout << "DOT file bptree.dot generated successfully.\n"
-//                   << "Use 'dot -Tpng bptree.dot -o bptree.png' to create an image.\n";
-//     } else {
-//         std::cerr << "Failed to open bptree.dot for writing.\n";
-//     }
-
-//     return 0;
-// }
