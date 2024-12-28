@@ -77,7 +77,7 @@ The program:
 
 ---
 
-## 🤝 Contributing
+## Contributing
 - Report issues or suggest enhancements through GitHub pull requests or issues.
 
 ---
