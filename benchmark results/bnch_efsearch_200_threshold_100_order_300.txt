@@ -1,0 +1,354 @@
+=== Build Times (milliseconds) ===
+B+Tree Build Time: 24 ms
+HNSW Build Time  : 7729 ms
+
+Parameters: efSearch=200, threshold=100, order=300 (=> degree=600)
+
+Query #1 (Brute Force):
+  CandidateIDs.size() = 43
+  QueryTime (ms)      = 0.138
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #2 (Brute Force):
+  CandidateIDs.size() = 26
+  QueryTime (ms)      = 0.03
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #3 (Brute Force):
+  CandidateIDs.size() = 18
+  QueryTime (ms)      = 0.041
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #4 (Brute Force):
+  CandidateIDs.size() = 6
+  QueryTime (ms)      = 0.009
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #5 (Brute Force):
+  CandidateIDs.size() = 57
+  QueryTime (ms)      = 0.068
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #6 (Brute Force):
+  CandidateIDs.size() = 67
+  QueryTime (ms)      = 0.073
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #7 (Brute Force):
+  CandidateIDs.size() = 37
+  QueryTime (ms)      = 0.04
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #8 (Brute Force):
+  CandidateIDs.size() = 12
+  QueryTime (ms)      = 0.015
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #9 (Brute Force):
+  CandidateIDs.size() = 57
+  QueryTime (ms)      = 0.06
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #10 (Brute Force):
+  CandidateIDs.size() = 29
+  QueryTime (ms)      = 0.032
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #11 (Brute Force):
+  CandidateIDs.size() = 6
+  QueryTime (ms)      = 0.008
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #12 (Brute Force):
+  CandidateIDs.size() = 33
+  QueryTime (ms)      = 0.035
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #13 (Brute Force):
+  CandidateIDs.size() = 72
+  QueryTime (ms)      = 0.077
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #14 (Brute Force):
+  CandidateIDs.size() = 13
+  QueryTime (ms)      = 0.015
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #15 (Brute Force):
+  CandidateIDs.size() = 25
+  QueryTime (ms)      = 0.027
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #16 (HNSW):
+  CandidateIDs.size() = 331
+  QueryTime (ms)      = 0.881
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #17 (Brute Force):
+  CandidateIDs.size() = 86
+  QueryTime (ms)      = 0.103
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #18 (Brute Force):
+  CandidateIDs.size() = 27
+  QueryTime (ms)      = 0.031
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #19 (Brute Force):
+  CandidateIDs.size() = 44
+  QueryTime (ms)      = 0.053
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #20 (Brute Force):
+  CandidateIDs.size() = 13
+  QueryTime (ms)      = 0.016
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #21 (Brute Force):
+  CandidateIDs.size() = 49
+  QueryTime (ms)      = 0.053
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #22 (Brute Force):
+  CandidateIDs.size() = 22
+  QueryTime (ms)      = 0.025
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #23 (Brute Force):
+  CandidateIDs.size() = 8
+  QueryTime (ms)      = 0.01
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #24 (Brute Force):
+  CandidateIDs.size() = 52
+  QueryTime (ms)      = 0.055
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #25 (Brute Force):
+  CandidateIDs.size() = 41
+  QueryTime (ms)      = 0.049
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #26 (Brute Force):
+  CandidateIDs.size() = 15
+  QueryTime (ms)      = 0.019
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #27 (Brute Force):
+  CandidateIDs.size() = 38
+  QueryTime (ms)      = 0.041
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #28 (Brute Force):
+  CandidateIDs.size() = 61
+  QueryTime (ms)      = 0.068
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #29 (Brute Force):
+  CandidateIDs.size() = 51
+  QueryTime (ms)      = 0.054
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #30 (Brute Force):
+  CandidateIDs.size() = 14
+  QueryTime (ms)      = 0.016
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #31 (Brute Force):
+  CandidateIDs.size() = 7
+  QueryTime (ms)      = 0.009
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #32 (Brute Force):
+  CandidateIDs.size() = 31
+  QueryTime (ms)      = 0.033
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #33 (Brute Force):
+  CandidateIDs.size() = 16
+  QueryTime (ms)      = 0.018
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #34 (Brute Force):
+  CandidateIDs.size() = 67
+  QueryTime (ms)      = 0.075
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #35 (Brute Force):
+  CandidateIDs.size() = 24
+  QueryTime (ms)      = 0.026
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #36 (Brute Force):
+  CandidateIDs.size() = 24
+  QueryTime (ms)      = 0.029
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #37 (Brute Force):
+  CandidateIDs.size() = 84
+  QueryTime (ms)      = 0.092
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #38 (Brute Force):
+  CandidateIDs.size() = 32
+  QueryTime (ms)      = 0.039
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #39 (HNSW):
+  CandidateIDs.size() = 333
+  QueryTime (ms)      = 0.941
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #40 (HNSW):
+  CandidateIDs.size() = 248
+  QueryTime (ms)      = 0.651
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #41 (Brute Force):
+  CandidateIDs.size() = 63
+  QueryTime (ms)      = 0.077
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #42 (Brute Force):
+  CandidateIDs.size() = 34
+  QueryTime (ms)      = 0.037
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #43 (Brute Force):
+  CandidateIDs.size() = 21
+  QueryTime (ms)      = 0.024
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #44 (Brute Force):
+  CandidateIDs.size() = 18
+  QueryTime (ms)      = 0.02
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #45 (HNSW):
+  CandidateIDs.size() = 114
+  QueryTime (ms)      = 0.587
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+  Filtered Precision@K= 1
+  Filtered Recall@K   = 1
+  Filtered Accuracy   = 1
+-----------------------------------
+Query #46 (Brute Force):
+  CandidateIDs.size() = 35
+  QueryTime (ms)      = 0.041
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+Query #47 (Brute Force):
+  CandidateIDs.size() = 42
+  QueryTime (ms)      = 0.05
+  Precision@K         = 1
+  Recall@K            = 1
+  Accuracy            = 1
+-----------------------------------
+
+=== Aggregate Metrics over 47 queries ===
+Average Precision@K : 1
+Average Recall@K    : 1
+Average Accuracy    : 1
+
+Total Queries Time (ms): 34

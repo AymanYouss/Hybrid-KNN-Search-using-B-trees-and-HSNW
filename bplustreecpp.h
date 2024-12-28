@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <sstream>
 
 using namespace std;
 typedef long long ll;
@@ -257,6 +258,53 @@ private:
 public:
     void printTree() {
         printNode(root, 0);
+    }
+
+    // Generates DOT code for the entire B+ tree and writes it to 'os'.
+    void generateDot(std::ostream &os) {
+        os << "digraph BPlusTree {\n";
+        os << "  node [shape=record, fontsize=12];\n";
+        int nodeCounter = 0;
+        generateDotNode(root, os, nodeCounter);
+        os << "}\n";
+    }
+
+    // Recursively traverse the tree to produce DOT nodes and edges.
+    int generateDotNode(Node* node, std::ostream &os, int &counter) {
+        if (!node) return -1;  // no node to draw
+
+        // This node's unique ID in the DOT graph
+        int nodeId = counter++;
+        
+        // Build a label with the node's keys
+        std::ostringstream labelBuilder;
+        labelBuilder << (node->isLeaf ? "Leaf" : "Int") << " | ";
+        for (int i = 0; i < node->numberOfKeys; i++) {
+            labelBuilder << "<k" << i << "> " << node->keys[i];
+            if (i < node->numberOfKeys - 1) {
+                labelBuilder << " | ";
+            }
+        }
+
+        // Print this node's definition in DOT
+        os << "  node" << nodeId 
+           << " [label=\"" << labelBuilder.str() << "\"];\n";
+
+        // If internal node, recurse on children
+        if (!node->isLeaf) {
+            for (int i = 0; i <= node->numberOfKeys; i++) {
+                Node* child = node->children[i];
+                if (child) {
+                    int childId = generateDotNode(child, os, counter);
+                    // Draw an edge from this node to the child
+                    if (childId >= 0) {
+                        os << "  node" << nodeId << " -> node" << childId << ";\n";
+                    }
+                }
+            }
+        }
+
+        return nodeId;
     }
 
 private:

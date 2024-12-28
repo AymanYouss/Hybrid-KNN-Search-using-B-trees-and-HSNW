@@ -142,9 +142,9 @@ int main(int argc, char** argv) {
         std::chrono::duration_cast<std::chrono::milliseconds>(endHNSW - startHNSW).count();
 
     // 4. Prepare output file
-    std::ofstream resultFile("benchmark_results_1m_multi_thread.txt");
+    std::ofstream resultFile("benchmark.txt");
     if(!resultFile.is_open()){
-        std::cerr << "Could not open benchmark_results_1m_multi_thread.txt for writing.\n";
+        std::cerr << "Could not open benchmark.txt for writing.\n";
         return 1;
     }
     resultFile << "=== Build Times (milliseconds) ===\n";
@@ -348,8 +348,40 @@ int main(int argc, char** argv) {
     // -------------------------------------------------------------------------
 
     resultFile.close();
-    std::cout << "Done. Results written to benchmark_results_1m_multi_thread.txt\n";
+    std::cout << "Done. Results written to benchmark.txt\n";
     std::cout << "Total time for all queries (ms): " << totalQueriesTimeMs << std::endl;
 
     return 0;
 }
+
+// #include <iostream>
+// #include <fstream>
+// #include "bplustreecpp.h"
+
+// int main() {
+//     BPlusTree bptree(2);
+
+//     // Insert some sample keys to build a basic tree
+//     // (You'll need to provide your own insert method calls or adapt them as appropriate.)
+//     bptree.insert(10.0f);
+//     bptree.insert(20.0f);
+//     bptree.insert(5.0f);
+//     bptree.insert(15.0f);
+//     bptree.insert(25.0f);
+
+//     // Option 1: Print DOT code to the console (stdout)
+//     // bptree.generateDot(std::cout);
+
+//     // Option 2: Print DOT code to a file
+//     std::ofstream outFile("bptree.dot");
+//     if (outFile.is_open()) {
+//         bptree.generateDot(outFile);
+//         outFile.close();
+//         std::cout << "DOT file bptree.dot generated successfully.\n"
+//                   << "Use 'dot -Tpng bptree.dot -o bptree.png' to create an image.\n";
+//     } else {
+//         std::cerr << "Failed to open bptree.dot for writing.\n";
+//     }
+
+//     return 0;
+// }
